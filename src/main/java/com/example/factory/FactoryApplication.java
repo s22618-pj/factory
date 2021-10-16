@@ -18,6 +18,7 @@ public class FactoryApplication {
 		tesla.setTapiceka("Skóra");
 		tesla.setWyposażenie("Sport");
 		tesla.setTyp("Sedan");
+		tesla.setWheels(4);
 
 		System.out.println(tesla);
 	}
