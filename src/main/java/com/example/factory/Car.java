@@ -1,7 +1,7 @@
 package com.example.factory;
 
 public class Car {
-
+    private String marka;
     private String model;
     private int pojemnośćSilnika;
     private String skrzynia;
@@ -12,7 +12,7 @@ public class Car {
     private String wyposażenie;
     private int wheels;
 
-    public Car(String model, int pojemnośćSilnika, String skrzynia, String typ, String kolor, String felgi, String tapiceka, String wyposażenie, int wheels) {
+    public Car(String model, int pojemnośćSilnika,String marka, String skrzynia, String typ, String kolor, String felgi, String tapiceka, String wyposażenie, int wheels) {
         this.model = model;
         this.pojemnośćSilnika = pojemnośćSilnika;
         this.skrzynia = skrzynia;
@@ -22,6 +22,7 @@ public class Car {
         this.tapiceka = tapiceka;
         this.wyposażenie = wyposażenie;
         this.wheels = wheels;
+        this.marka =marka;
     }
 
     public Car() {
@@ -31,7 +32,6 @@ public class Car {
     public int getWheels() {
         return wheels;
     }
-
     public String getModel(){
         return model;
     }
@@ -53,9 +53,10 @@ public class Car {
     public String getTapiceka(){
         return tapiceka;
     }
-    public String getWyposażenie(){
-        return wyposażenie;
-    }
+    public String getWyposażenie(){return wyposażenie;}
+    public String getMarka() {return marka;}
+
+
 
     public void setModel(String model) {
         this.model = model;
@@ -92,4 +93,8 @@ public class Car {
     public void setWheels(int wheels) {
         this.wheels = wheels;
     }
+
+    public void setMarka(String marka) {this.marka = marka;}
+
+
 }
