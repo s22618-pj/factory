@@ -1,28 +1,29 @@
 package com.example.factory;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+//By RestController user can communicate with the server
 @RestController
+
+//By RequestMapping the class intercepts web queries that are sent to the given address
 @RequestMapping("/cars")
 public class CarRestController {
 
-    public final CarRestController(CarService carService){
+    //Singleton - In object-oriented programming, a singleton class is a class that
+    //can have only one object (an instance of the class) at a time
+    private final CarService carService;
+
+
+    public CarRestController(CarService carService) {
         this.carService = carService;
     }
 
     @GetMapping
-    public ResponseEntity<String> printHelloWorld(){
-        return ResponseEntity.ok("Hello world");
+    //ResponseEntity - represent the whole HTTP response: status code, headers and body
+    public ResponseEntity<Car> getCar() {
+        return ResponseEntity.ok(carService.buildCar("Ford","Mustang"));
     }
-
-    @GetMapping("/build")
-    public ResponseEntity<Car> getCar(){
-        return Response.ok(carService.build(make: "Subaru", model: "Forester"))
-    }
-
-    //ResponseEntity
-    //H2database
 }

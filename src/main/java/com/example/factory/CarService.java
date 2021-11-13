@@ -1,24 +1,50 @@
 package com.example.factory;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @Service
 public class CarService {
 
-    public Car buildCar(String model, String marka ){
-        Car car = new Car(marka, wheels:4, model, pojemnośćSilnika:1000)
+
+    private final CarRepository carRepository;
+
+
+    public CarService(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
 
+    public Car buildCar(String brand, String model) {
+        Car car = new Car(brand, model, 4, 6);
 
-
-
-    public void print(Car car) {
-
-        System.out.println(car);
+        return carRepository.save(car);
     }
 
-    public void addExtraWheel(Car car) {
+    public void addWheel(Car car) {
         if (car.getWheels() < 5) {
-            car.setWheels(car.getWheels() + 1);
+            System.out.println("You add wheels");
+            System.out.println(car.getWheels() + 1);
+        } else {
+            System.out.println("You can't add more wheels!!!");
         }
     }
-
+    public Car findById(Long id){
+        Optional<Car> byId = carRepository.findById(id);
+        if (byId.isPresent())
+            return byId;
+        else
+            return null;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
